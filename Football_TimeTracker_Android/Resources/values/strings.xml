@@ -1,4 +1,15 @@
 <resources>
     <string name="app_name">Football_TimeTracker_Android</string>
-    <string name="app_text">Hello, Android!</string>
+    <string name="string_timer0">00:00</string>
+    <string name="string_aseguir">A seguir</string>
+    <string name="string_bolafora">Bola fora</string>
+    <string name="string_refblow">Árbitro apita</string>
+    <string name="string_goal">Golo</string>
+  <string name="string_startfirsthalf">Iniciar 1ª parte</string>
+  <string name="string_undo">Desfazer</string>
+  <string name="string_save">Gravar</string>
+  <string name="string_reset">Reset</string>
+  <string name="string_gamename">Nome do jogo</string>
+  <string name="string_competitionname">Competição</string>
+  <string name="string_status_poriniciar">por iniciar...</string>
 </resources>

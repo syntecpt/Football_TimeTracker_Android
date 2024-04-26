@@ -13,7 +13,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="00:00"
+        android:text="@string/string_timer0"
         android:gravity="center"
         android:layout_marginTop="145dp"
         android:layout_marginLeft="360dp"
@@ -21,7 +21,7 @@
         android:background="#00FF7F"
         android:id="@+id/timeText" />
     <Button
-        android:text="A seguir"
+        android:text="@string/string_aseguir"
         android:layout_width="125dp"
         android:layout_height="115dp"
         android:id="@+id/ActiveButton"
@@ -31,7 +31,7 @@
         android:layout_marginTop="20dp"
         />
     <Button
-        android:text="Bola fora"
+        android:text="@string/string_bolafora"
         android:layout_width="125dp"
         android:layout_height="115dp"
         android:id="@+id/OutOfBoundsButton"
@@ -41,7 +41,7 @@
         android:layout_marginLeft="10.0dp" 
         />
     <Button
-        android:text="Árbitro apita"
+        android:text="@string/string_refblow"
         android:layout_width="125dp"
         android:layout_height="115dp"
         android:id="@+id/RefBlowButton"
@@ -52,7 +52,7 @@
         android:layout_marginLeft="60.0dp" 
         />
     <Button
-        android:text="Golo"
+        android:text="@string/string_goal"
         android:layout_width="125dp"
         android:layout_height="115dp"
         android:id="@+id/GoalButton"
@@ -64,7 +64,7 @@
         />
 
     <Button
-        android:text="Iniciar 1ª parte"
+        android:text="@string/string_startfirsthalf"
         android:layout_width="225dp"
         android:layout_height="115dp"
         android:id="@+id/StartGameButton"
@@ -75,7 +75,7 @@
         />
 
     <Button
-        android:text="Desfazer"
+        android:text="@string/string_undo"
         android:layout_width="125dp"
         android:layout_height="65dp"
         android:id="@+id/UndoButton"
@@ -87,7 +87,7 @@
         />
 
     <Button
-        android:text="Gravar"
+        android:text="@string/string_save"
         android:layout_width="115dp"
         android:layout_height="65dp"
         android:id="@+id/SaveButton"
@@ -99,7 +99,7 @@
         />
 
     <Button
-        android:text="Reset"
+        android:text="@string/string_reset"
         android:layout_width="115dp"
         android:layout_height="65dp"
         android:id="@+id/ResetButton"
@@ -112,7 +112,7 @@
     <TextView
         android:layout_width="200dp"
         android:layout_height="30dp"
-        android:text="nome do jogo"
+        android:text="@string/string_gamename"
         android:gravity="center"
         android:layout_marginTop="140dp"
         android:layout_marginLeft="530dp"
@@ -126,12 +126,13 @@
         android:layout_marginTop="180dp" 
         android:background="#F0F0F0"
         android:digits="0123456789qwertzuiopasdfghjklyxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM "
+        android:inputType="text"
         />
 
     <TextView
         android:layout_width="200dp"
         android:layout_height="30dp"
-        android:text="competição"
+        android:text="@string/string_competitionname"
         android:gravity="center"
         android:layout_marginTop="215dp"
         android:layout_marginLeft="530dp"
@@ -145,12 +146,13 @@
         android:layout_marginTop="250dp" 
         android:background="#F0F0F0"
         android:digits="0123456789qwertzuiopasdfghjklyxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM "
+        android:inputType="text"
         />
 
     <TextView
         android:layout_width="150dp"
         android:layout_height="30dp"
-        android:text="por iniciar..."
+        android:text="@string/string_status_poriniciar"
         android:gravity="center"
         android:layout_marginTop="305dp"
         android:layout_marginLeft="300dp"
