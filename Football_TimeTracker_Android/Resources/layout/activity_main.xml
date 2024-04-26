@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:showIn="@layout/activity_main"
+    android:minWidth="25px"
+    android:minHeight="25px"
+    android:background="#696969">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="00:00"
+        android:gravity="center"
+        android:layout_marginTop="145dp"
+        android:layout_marginLeft="360dp"
+        android:textSize="40dp"
+        android:background="#00FF7F"
+        android:id="@+id/timeText" />
+    <Button
+        android:text="A seguir"
+        android:layout_width="125dp"
+        android:layout_height="115dp"
+        android:id="@+id/ActiveButton"
+        android:backgroundTint="#00FF7F"
+        android:textColor="@android:color/black"
+        android:layout_marginLeft="110.0dp" 
+        android:layout_marginTop="20dp"
+        />
+    <Button
+        android:text="Bola fora"
+        android:layout_width="125dp"
+        android:layout_height="115dp"
+        android:id="@+id/OutOfBoundsButton"
+        android:layout_below="@+id/ActiveButton"
+        android:backgroundTint="#FFFF00"
+        android:textColor="@android:color/black"
+        android:layout_marginLeft="10.0dp" 
+        />
+    <Button
+        android:text="Árbitro apita"
+        android:layout_width="125dp"
+        android:layout_height="115dp"
+        android:id="@+id/RefBlowButton"
+        android:layout_toRightOf="@+id/OutOfBoundsButton"
+        android:layout_below="@+id/ActiveButton"
+        android:backgroundTint="#FA8072"
+        android:textColor="@android:color/black"
+        android:layout_marginLeft="60.0dp" 
+        />
+    <Button
+        android:text="Golo"
+        android:layout_width="125dp"
+        android:layout_height="115dp"
+        android:id="@+id/GoalButton"
+        android:layout_below="@+id/ActiveButton"
+        android:backgroundTint="#87CEFA"
+        android:textColor="@android:color/black"
+        android:layout_marginLeft="110dp"
+        android:layout_marginTop="115dp"
+        />
+
+    <Button
+        android:text="Iniciar 1ª parte"
+        android:layout_width="225dp"
+        android:layout_height="115dp"
+        android:id="@+id/StartGameButton"
+        android:backgroundTint="#F0F0F0"
+        android:textColor="@android:color/black"
+        android:layout_marginLeft="520dp"
+        android:layout_marginTop="20dp"
+        />
+
+    <Button
+        android:text="Desfazer"
+        android:layout_width="125dp"
+        android:layout_height="65dp"
+        android:id="@+id/UndoButton"
+        android:enabled="false"
+        android:backgroundTint="#909090"
+        android:textColor="#646464"
+        android:layout_marginLeft="350dp"
+        android:layout_marginTop="20dp"
+        />
+
+    <Button
+        android:text="Gravar"
+        android:layout_width="115dp"
+        android:layout_height="65dp"
+        android:id="@+id/SaveButton"
+        android:enabled="false"
+        android:backgroundTint="#909090"
+        android:textColor="#646464"
+        android:layout_marginLeft="500dp"
+        android:layout_marginTop="300dp"
+        />
+
+    <Button
+        android:text="Reset"
+        android:layout_width="115dp"
+        android:layout_height="65dp"
+        android:id="@+id/ResetButton"
+        android:backgroundTint="#F0F0F0"
+        android:textColor="@android:color/black"
+        android:layout_marginLeft="630dp"
+        android:layout_marginTop="300dp"
+        />
+
+    <TextView
+        android:layout_width="200dp"
+        android:layout_height="30dp"
+        android:text="nome do jogo"
+        android:gravity="center"
+        android:layout_marginTop="140dp"
+        android:layout_marginLeft="530dp"
+        android:id="@+id/textView2" />
+
+    <EditText
+        android:layout_width="215dp"
+        android:layout_height="30dp"
+        android:id="@+id/namegameText"
+        android:layout_marginLeft="530dp"
+        android:layout_marginTop="180dp" 
+        android:background="#F0F0F0"
+        android:digits="0123456789qwertzuiopasdfghjklyxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM "
+        />
+
+    <TextView
+        android:layout_width="200dp"
+        android:layout_height="30dp"
+        android:text="competição"
+        android:gravity="center"
+        android:layout_marginTop="215dp"
+        android:layout_marginLeft="530dp"
+        android:id="@+id/textView3" />
+
+    <EditText
+        android:layout_width="215dp"
+        android:layout_height="30dp"
+        android:id="@+id/competitionText"
+        android:layout_marginLeft="530dp"
+        android:layout_marginTop="250dp" 
+        android:background="#F0F0F0"
+        android:digits="0123456789qwertzuiopasdfghjklyxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM "
+        />
+
+    <TextView
+        android:layout_width="150dp"
+        android:layout_height="30dp"
+        android:text="por iniciar..."
+        android:gravity="center"
+        android:layout_marginTop="305dp"
+        android:layout_marginLeft="300dp"
+        android:textColor="@android:color/black"
+        android:id="@+id/gamestatusText" 
+        />
+
+</RelativeLayout>
