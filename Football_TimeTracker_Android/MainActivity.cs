@@ -347,10 +347,10 @@ namespace Football_TimeTracker_Android
         {
             if (segments!.Where( x => x.half == half).Count() > 1)
             {
-                Segment lastSegment = segments.Last();
+                Segment lastSegment = segments!.Last();
                 if (lastSegment.elapsedSeconds == 0)
                 {
-                    segments.Remove( lastSegment );
+                    segments!.Remove( lastSegment );
 
                     return true;
                 }
