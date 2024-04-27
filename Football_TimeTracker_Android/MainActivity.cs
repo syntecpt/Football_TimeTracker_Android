@@ -5,11 +5,13 @@ using System.Timers;
 using System.Xml;
 using Android.Graphics;
 using Newtonsoft.Json;
+using static Android.Views.GestureDetector;
+using static Android.Views.View;
 
 namespace Football_TimeTracker_Android
 {
     [Activity( Label = "@string/app_name", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Landscape )]
-    public class MainActivity : Activity
+    public class MainActivity : Activity, IOnTouchListener, IOnGestureListener
     {
         TextView? mainText, gamestatusText;
         EditText? gamenameText, competitionName;
@@ -19,6 +21,8 @@ namespace Football_TimeTracker_Android
         int seconds, half, currentSegmentType;
         List<Segment>? segments;
         bool ticking;
+
+        private GestureDetector? gestureDetector;
 
         protected override void OnCreate( Bundle? savedInstanceState )
         {
@@ -59,6 +63,17 @@ namespace Football_TimeTracker_Android
             timerPrincipal = new System.Timers.Timer();
             timerPrincipal.Interval = 1000;
             timerPrincipal.Elapsed += new ElapsedEventHandler( TimerSecondPassed );
+
+            gestureDetector = new GestureDetector( this, this );
+            RelativeLayout? layout = FindViewById<RelativeLayout>( Resource.Id.relativeLayout );
+            layout!.SetOnTouchListener( this );
+            activeButton.SetOnTouchListener( this );
+            outofboundsButton.SetOnTouchListener( this );
+            refblowButton.SetOnTouchListener( this );
+            goalButton.SetOnTouchListener( this );
+            undoButton.SetOnTouchListener( this );
+            mainText!.SetOnTouchListener( this );
+            gamestatusText!.SetOnTouchListener( this );
         }
 
         private void ResetAll()
@@ -93,7 +108,7 @@ namespace Football_TimeTracker_Android
             Window!.ClearFlags( WindowManagerFlags.KeepScreenOn );
         }
 
-        private void OnActiveButtonClicked( object? sender, EventArgs args )
+        private void OnActiveButtonClicked( object? sender, EventArgs? args )
         {
             if (!ticking)
                 return;
@@ -110,7 +125,7 @@ namespace Football_TimeTracker_Android
             }
         }
 
-        private void OnOutOfBoundsButtonClicked( object? sender, EventArgs args )
+        private void OnOutOfBoundsButtonClicked( object? sender, EventArgs? args )
         {
             if (!ticking)
                 return;
@@ -134,7 +149,7 @@ namespace Football_TimeTracker_Android
             }
         }
 
-        private void OnRefBlowButtonClicked( object? sender, EventArgs args )
+        private void OnRefBlowButtonClicked( object? sender, EventArgs? args )
         {
             if (!ticking)
                 return;
@@ -158,7 +173,7 @@ namespace Football_TimeTracker_Android
             }
         }
 
-        private void OnGoalButtonClicked( object? sender, EventArgs args )
+        private void OnGoalButtonClicked( object? sender, EventArgs? args )
         {
             if (!ticking)
                 return;
@@ -445,6 +460,87 @@ namespace Football_TimeTracker_Android
                     break;
             }
         }
+
+        public bool OnDown( MotionEvent e )
+        {
+            return true;
+        }
+
+        public bool OnFling( MotionEvent? e1, MotionEvent e2, float velocityX, float velocityY )
+        {
+            bool result = false;
+            try
+            {
+                float diffY = e2.GetY() - e1!.GetY();
+                float diffX = e2.GetX() - e1.GetX();
+                if (Math.Abs( diffX ) > Math.Abs( diffY ))
+                {
+                    if (Math.Abs( diffX ) > Constants.SWIPE_THRESHOLD_VELOCITY && Math.Abs( velocityX ) > Constants.SWIPE_THRESHOLD_VELOCITY)
+                    {
+                        if (diffX > 0)
+                        {
+                            OnRefBlowButtonClicked( null, null );
+                            //Console.WriteLine("Swiped Right");
+                        }
+                        else
+                        {
+                            OnOutOfBoundsButtonClicked( null, null );    
+                            //Console.WriteLine( "Swiped Left" );
+                        }
+                        result = true;
+                    }
+                }
+                else
+                if (Math.Abs( diffY ) > Constants.SWIPE_THRESHOLD_VELOCITY && Math.Abs( velocityY ) > Constants.SWIPE_THRESHOLD_VELOCITY)
+                {
+                    if (diffY > 0)
+                    {
+                        OnGoalButtonClicked( null, null );   
+                        //Console.WriteLine( "Swiped Bottom" );
+                    }
+                    else
+                    {
+                        OnActiveButtonClicked( null, null );  
+                        //Console.WriteLine( "Swiped Top" );
+                    }
+                    result = true;
+                }
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine( exception.Message );
+            }
+            return result;
+        }
+
+        public void OnLongPress( MotionEvent e )
+        {
+            
+        }
+
+        public bool OnScroll( MotionEvent? e1, MotionEvent e2, float distanceX, float distanceY )
+        {
+            return true;
+        }
+
+        public void OnShowPress( MotionEvent e )
+        {
+            
+        }
+
+        public bool OnSingleTapUp( MotionEvent e )
+        {
+            return true;
+        }
+
+        public bool OnTouch( View? v, MotionEvent? e )
+        {
+            if(e!.Action == MotionEventActions.Up)
+            {
+                v!.CallOnClick();
+            }
+            return gestureDetector!.OnTouchEvent( e! );
+        }
     }
 
     static class Constants
@@ -465,6 +561,8 @@ namespace Football_TimeTracker_Android
         public static Color enabledButton = Color.Rgb( 240, 240, 240 );
         public static Color disabledButton = Color.Rgb( 144, 144, 144 );
         public static Color disabledText = Color.Rgb( 100, 100, 100 );
+
+        public static int SWIPE_THRESHOLD_VELOCITY = 200;
     }
 
     public class Segment

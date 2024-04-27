@@ -8,7 +8,8 @@
     tools:showIn="@layout/activity_main"
     android:minWidth="25px"
     android:minHeight="25px"
-    android:background="#696969">
+    android:background="#696969"
+    android:id="@+id/relativeLayout">
 
     <TextView
         android:layout_width="wrap_content"
