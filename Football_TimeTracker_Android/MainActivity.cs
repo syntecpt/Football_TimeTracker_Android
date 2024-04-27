@@ -218,6 +218,7 @@ namespace Football_TimeTracker_Android
                 ticking = false;
                 Window!.ClearFlags( WindowManagerFlags.KeepScreenOn );
                 startButton!.Text = GetString( Resource.String.string_startsecondhalf );
+                CheckUndoButton();
             }
             else if (!ticking && half == 1)
             {
@@ -247,6 +248,7 @@ namespace Football_TimeTracker_Android
                 saveButton!.Enabled = true;
                 saveButton.Background!.SetTint( Constants.enabledButton );
                 saveButton.SetTextColor( Color.Black );
+                CheckUndoButton();
             }
         }
 
@@ -338,18 +340,7 @@ namespace Football_TimeTracker_Android
             Segment segment = new Segment( seconds, currentSegmentType, half );
             segments!.Add( segment );
 
-            if (segments.Where( x => x.half == half ).ToList().Count > 1)
-            {
-                undoButton!.Enabled = true;
-                undoButton.Background!.SetTint( Constants.enabledButton );
-                undoButton.SetTextColor( Color.Black );
-            }
-            else
-            {
-                undoButton!.Enabled = false;
-                undoButton.Background!.SetTint( Constants.disabledButton );
-                undoButton.SetTextColor( Constants.disabledText );
-            }
+            CheckUndoButton();
         }
 
         private bool GarbageCollected()
@@ -410,7 +401,19 @@ namespace Football_TimeTracker_Android
                     mainText!.SetBackgroundColor( Constants.colorSegmentGoal );
                     break;
             }
-            if (segments.Where( x => x.half == half ).ToList().Count > 1)
+            CheckUndoButton();
+        }
+
+        private void CheckUndoButton()
+        {
+            if(!ticking)
+            {
+                undoButton!.Enabled = false;
+                undoButton.Background!.SetTint( Constants.disabledButton );
+                undoButton.SetTextColor( Constants.disabledText );
+            }
+
+            if (segments!.Where( x => x.half == half ).ToList().Count > 1)
             {
                 undoButton!.Enabled = true;
                 undoButton.Background!.SetTint( Constants.enabledButton );
