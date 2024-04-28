@@ -206,6 +206,10 @@ namespace Football_TimeTracker_Android
             {
                 RemoveSegment();
             }
+            else
+            {
+                ResetHalf();
+            }
         }
 
         private void OnStartGameButtonClicked( object? sender, EventArgs args )
@@ -419,6 +423,32 @@ namespace Football_TimeTracker_Android
             CheckUndoButton();
         }
 
+        private void ResetHalf()
+        {
+            Segment lastsegment = segments!.Last();
+            segments!.Remove( lastsegment );
+            UpdateTotals();
+            CheckUndoButton();
+            seconds = 0;
+            timerPrincipal!.Stop();
+            mainText!.Text = GetString( Resource.String.string_timer0 );
+            mainText.SetBackgroundColor( Constants.colorBackgroundGray );
+            ticking = false;
+            Window!.ClearFlags( WindowManagerFlags.KeepScreenOn );
+            if (half == 0)
+            {
+                gamestatusText!.Text = GetString( Resource.String.string_status_poriniciar ); ;
+                gamestatusText.SetBackgroundColor( Constants.colorBackgroundGray );
+                startButton!.Text = GetString( Resource.String.string_startfirsthalf ); ;
+            }
+            else
+            {
+                gamestatusText!.SetBackgroundColor( Color.Khaki );
+                gamestatusText.Text = GetString( Resource.String.string_status_halftime );
+                startButton!.Text = GetString( Resource.String.string_startsecondhalf );
+            }
+        }
+
         private void CheckUndoButton()
         {
             if(!ticking)
@@ -428,7 +458,7 @@ namespace Football_TimeTracker_Android
                 undoButton.SetTextColor( Constants.disabledText );
             }
 
-            if (segments!.Where( x => x.half == half ).ToList().Count > 1)
+            if (segments!.Where( x => x.half == half ).ToList().Count >= 1)
             {
                 undoButton!.Enabled = true;
                 undoButton.Background!.SetTint( Constants.enabledButton );
