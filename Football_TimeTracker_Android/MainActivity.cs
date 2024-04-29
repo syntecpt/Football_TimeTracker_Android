@@ -15,7 +15,7 @@ namespace Football_TimeTracker_Android
     {
         TextView? mainText, gamestatusText;
         EditText? gamenameText, competitionName;
-        Button? activeButton, outofboundsButton, refblowButton, goalButton, undoButton, startButton, saveButton, resetButton;
+        Button? activeButton, outofboundsButton, refblowButton, goalButton, undoButton, startButton, saveButton, resetButton, buttonTouch;
 
         System.Timers.Timer? timerPrincipal;
         int seconds, half, currentSegmentType;
@@ -560,15 +560,22 @@ namespace Football_TimeTracker_Android
 
         public bool OnSingleTapUp( MotionEvent e )
         {
+            if (buttonTouch != null)
+                buttonTouch.CallOnClick();
             return true;
         }
 
         public bool OnTouch( View? v, MotionEvent? e )
         {
-            if(e!.Action == MotionEventActions.Up)
+            if (v!.GetType() == typeof( Button ))
             {
-                v!.CallOnClick();
+                buttonTouch = (Button)v;
             }
+            else
+            {
+                buttonTouch = null;
+            }
+
             return gestureDetector!.OnTouchEvent( e! );
         }
     }
