@@ -12,12 +12,12 @@
     android:id="@+id/relativeLayout">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="100dp"
         android:text="@string/string_timer0"
         android:gravity="center"
         android:layout_marginTop="145dp"
-        android:layout_marginLeft="360dp"
+        android:layout_marginLeft="345dp"
         android:textSize="40dp"
         android:background="#00FF7F"
         android:id="@+id/timeText" />
