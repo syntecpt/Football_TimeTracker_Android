@@ -41,24 +41,24 @@ namespace Football_TimeTracker_Android
             gamenameText = FindViewById<EditText>( Resource.Id.namegameText );
             competitionName = FindViewById<EditText>( Resource.Id.competitionText );
             activeButton = FindViewById<Button>( Resource.Id.ActiveButton );
-            activeButton!.Click += OnActiveButtonClicked;
+            activeButton.Click += OnActiveButtonClicked;
             outofboundsButton = FindViewById<Button>( Resource.Id.OutOfBoundsButton );
-            outofboundsButton!.Click += OnOutOfBoundsButtonClicked;
+            outofboundsButton.Click += OnOutOfBoundsButtonClicked;
             refblowButton = FindViewById<Button>( Resource.Id.RefBlowButton );
-            refblowButton!.Click += OnRefBlowButtonClicked;
+            refblowButton.Click += OnRefBlowButtonClicked;
             goalButton = FindViewById<Button>( Resource.Id.GoalButton );
-            goalButton!.Click += OnGoalButtonClicked;
+            goalButton.Click += OnGoalButtonClicked;
             undoButton = FindViewById<Button>( Resource.Id.UndoButton );
-            undoButton!.Click += OnUndoButtonClicked;
+            undoButton.Click += OnUndoButtonClicked;
             startButton = FindViewById<Button>( Resource.Id.StartGameButton );
-            startButton!.Click += OnStartGameButtonClicked;
+            startButton.Click += OnStartGameButtonClicked;
             saveButton = FindViewById<Button>( Resource.Id.SaveButton );
-            saveButton!.Click += OnSaveGameButtonClicked;
+            saveButton.Click += OnSaveGameButtonClicked;
             resetButton = FindViewById<Button>( Resource.Id.ResetButton );
-            resetButton!.Click += OnResetButtonClicked;
+            resetButton.Click += OnResetButtonClicked;
 
-            Window!.SetFlags( WindowManagerFlags.Fullscreen, WindowManagerFlags.Fullscreen );
-            ActionBar!.Hide();
+            Window.SetFlags( WindowManagerFlags.Fullscreen, WindowManagerFlags.Fullscreen );
+            ActionBar.Hide();
 
             timerPrincipal = new System.Timers.Timer();
             timerPrincipal.Interval = 1000;
@@ -66,14 +66,14 @@ namespace Football_TimeTracker_Android
 
             gestureDetector = new GestureDetector( this, this );
             RelativeLayout? layout = FindViewById<RelativeLayout>( Resource.Id.relativeLayout );
-            layout!.SetOnTouchListener( this );
+            layout.SetOnTouchListener( this );
             activeButton.SetOnTouchListener( this );
             outofboundsButton.SetOnTouchListener( this );
             refblowButton.SetOnTouchListener( this );
             goalButton.SetOnTouchListener( this );
             undoButton.SetOnTouchListener( this );
-            mainText!.SetOnTouchListener( this );
-            gamestatusText!.SetOnTouchListener( this );
+            mainText.SetOnTouchListener( this );
+            gamestatusText.SetOnTouchListener( this );
         }
 
         private void ResetAll()
@@ -83,29 +83,29 @@ namespace Football_TimeTracker_Android
             segments = new List<Segment>();
             currentSegmentType = 0;
             ticking = false;
-            timerPrincipal!.Stop();
-            mainText!.Text = GetString(Resource.String.string_timer0);
+            timerPrincipal.Stop();
+            mainText.Text = GetString(Resource.String.string_timer0);
             mainText.SetBackgroundColor( Constants.colorSegmentActive );
-            gamestatusText!.Text = GetString( Resource.String.string_status_poriniciar ); ;
+            gamestatusText.Text = GetString( Resource.String.string_status_poriniciar ); ;
             gamestatusText.SetTextColor( Color.Black );
             gamestatusText.SetBackgroundColor( Constants.colorBackgroundGray );
-            undoButton!.Enabled = false;
-            undoButton.Background!.SetTint( Constants.disabledButton );
+            undoButton.Enabled = false;
+            undoButton.Background.SetTint( Constants.disabledButton );
             undoButton.SetTextColor( Constants.disabledText );
-            startButton!.Enabled = true;
-            startButton.Background!.SetTint( Constants.enabledButton );
+            startButton.Enabled = true;
+            startButton.Background.SetTint( Constants.enabledButton );
             startButton.SetTextColor( Color.Black );
             startButton.Text = GetString( Resource.String.string_startfirsthalf ); ;
-            gamenameText!.Text = string.Empty;
+            gamenameText.Text = string.Empty;
             gamenameText.Enabled = true;
-            competitionName!.Text = string.Empty;
+            competitionName.Text = string.Empty;
             competitionName.Enabled = true;
             gamenameText.RequestFocus();
-            saveButton!.Enabled = false;
-            saveButton.Background!.SetTint( Constants.disabledButton );
+            saveButton.Enabled = false;
+            saveButton.Background.SetTint( Constants.disabledButton );
             saveButton.SetTextColor( Constants.disabledText );
             saveButton.Text = GetString( Resource.String.string_save ); ;
-            Window!.ClearFlags( WindowManagerFlags.KeepScreenOn );
+            Window.ClearFlags( WindowManagerFlags.KeepScreenOn );
         }
 
         private void OnActiveButtonClicked( object? sender, EventArgs? args )
@@ -120,7 +120,7 @@ namespace Football_TimeTracker_Android
             else
             {
                 currentSegmentType = Constants.segmentTypeActive;
-                mainText!.SetBackgroundColor( Constants.colorSegmentActive );
+                mainText.SetBackgroundColor( Constants.colorSegmentActive );
                 AddSegment();
             }
         }
@@ -143,7 +143,7 @@ namespace Football_TimeTracker_Android
                 else
                 {
                     currentSegmentType = Constants.segmentTypeOutofBounds;
-                    mainText!.SetBackgroundColor( Constants.colorSegmentOutofBounds );
+                    mainText.SetBackgroundColor( Constants.colorSegmentOutofBounds );
                     AddSegment();
                 }
             }
@@ -167,7 +167,7 @@ namespace Football_TimeTracker_Android
                 else
                 {
                     currentSegmentType = Constants.segmentTypeRefBlow;
-                    mainText!.SetBackgroundColor( Constants.colorSegmentRefBlow );
+                    mainText.SetBackgroundColor( Constants.colorSegmentRefBlow );
                     AddSegment();
                 }
             }
@@ -191,7 +191,7 @@ namespace Football_TimeTracker_Android
                 else
                 {
                     currentSegmentType = Constants.segmentTypeGoal;
-                    mainText!.SetBackgroundColor( Constants.colorSegmentGoal );
+                    mainText.SetBackgroundColor( Constants.colorSegmentGoal );
                     AddSegment();
                 }
             }
@@ -202,7 +202,7 @@ namespace Football_TimeTracker_Android
             if (!ticking)
             { return; }
 
-            if (segments!.Where( x => x.half == half ).Count() > 1)
+            if (segments.Where( x => x.half == half ).Count() > 1)
             {
                 RemoveSegment();
             }
@@ -217,55 +217,55 @@ namespace Football_TimeTracker_Android
             if (!ticking && half == 0)
             {
                 seconds = 0;
-                timerPrincipal!.Start();
-                mainText!.SetBackgroundColor( Constants.colorSegmentActive );
+                timerPrincipal.Start();
+                mainText.SetBackgroundColor( Constants.colorSegmentActive );
                 mainText.Text = GetString( Resource.String.string_timer0 );
                 ticking = true;
-                Window!.AddFlags( WindowManagerFlags.KeepScreenOn );
+                Window.AddFlags( WindowManagerFlags.KeepScreenOn );
                 currentSegmentType = Constants.segmentTypeActive;
-                gamestatusText!.SetBackgroundColor( Color.Lime );
+                gamestatusText.SetBackgroundColor( Color.Lime );
                 gamestatusText.Text = GetString( Resource.String.string_status_firsthalfrunning );
-                startButton!.Text = GetString( Resource.String.string_endfirsthalf );
+                startButton.Text = GetString( Resource.String.string_endfirsthalf );
                 AddSegment();
             }
             else if (ticking && half == 0)
             {
-                timerPrincipal!.Stop();
+                timerPrincipal.Stop();
                 half++;
-                gamestatusText!.SetBackgroundColor( Color.Khaki );
+                gamestatusText.SetBackgroundColor( Color.Khaki );
                 gamestatusText.Text = GetString( Resource.String.string_status_halftime );
                 ticking = false;
-                Window!.ClearFlags( WindowManagerFlags.KeepScreenOn );
-                startButton!.Text = GetString( Resource.String.string_startsecondhalf );
+                Window.ClearFlags( WindowManagerFlags.KeepScreenOn );
+                startButton.Text = GetString( Resource.String.string_startsecondhalf );
                 CheckUndoButton();
             }
             else if (!ticking && half == 1)
             {
                 seconds = 0;
-                timerPrincipal!.Start();
-                mainText!.SetBackgroundColor( Constants.colorSegmentActive );
+                timerPrincipal.Start();
+                mainText.SetBackgroundColor( Constants.colorSegmentActive );
                 mainText.Text = GetString( Resource.String.string_timer0 );
                 ticking = true;
-                Window!.AddFlags( WindowManagerFlags.KeepScreenOn );
+                Window.AddFlags( WindowManagerFlags.KeepScreenOn );
                 currentSegmentType = Constants.segmentTypeActive;
-                gamestatusText!.SetBackgroundColor( Color.Lime );
+                gamestatusText.SetBackgroundColor( Color.Lime );
                 gamestatusText.Text = GetString( Resource.String.string_status_secondhalfrunning );
-                startButton!.Text = GetString( Resource.String.string_endsecondhalf );
+                startButton.Text = GetString( Resource.String.string_endsecondhalf );
                 AddSegment();
             }
             else if (ticking && half == 1)
             {
-                timerPrincipal!.Stop();
+                timerPrincipal.Stop();
                 half++;
-                gamestatusText!.SetBackgroundColor( Color.Red );
+                gamestatusText.SetBackgroundColor( Color.Red );
                 gamestatusText.Text = GetString( Resource.String.string_status_fulltime );
                 ticking = false;
-                Window!.ClearFlags( WindowManagerFlags.KeepScreenOn );
-                startButton!.Background!.SetTint( Constants.disabledButton );
+                Window.ClearFlags( WindowManagerFlags.KeepScreenOn );
+                startButton.Background.SetTint( Constants.disabledButton );
                 startButton.SetTextColor( Constants.disabledText );
                 startButton.Enabled = false;
-                saveButton!.Enabled = true;
-                saveButton.Background!.SetTint( Constants.enabledButton );
+                saveButton.Enabled = true;
+                saveButton.Background.SetTint( Constants.enabledButton );
                 saveButton.SetTextColor( Color.Black );
                 CheckUndoButton();
             }
@@ -273,31 +273,31 @@ namespace Football_TimeTracker_Android
 
         private void OnSaveGameButtonClicked( object? sender, EventArgs args )
         {
-            if (gamenameText!.Text!.Trim().Length == 0 || competitionName!.Text!.Trim().Length == 0)
+            if (gamenameText.Text.Trim().Length == 0 || competitionName.Text.Trim().Length == 0)
             {
                 AlertDialog.Builder builder = new AlertDialog.Builder( this );
                 builder.SetTitle( GetString( Resource.String.string_namepopup_title ) );
                 builder.SetMessage( GetString( Resource.String.string_namepopup_message ) );
                 builder.SetPositiveButton( GetString( Resource.String.OK ), ( senderAlert, args ) => { } );
 
-                AlertDialog dialog = builder.Create()!;
-                dialog!.Show();
+                AlertDialog dialog = builder.Create();
+                dialog.Show();
             }
             else
             {
                 DateTime dateTime = DateTime.Now;
                 string fileName = gamenameText.Text.Trim() + "_" + competitionName.Text.Trim() + "_" + dateTime.Date.ToString( "dd-MM-yyyy" );
-                string filesName = System.IO.Path.Combine( Android.OS.Environment.GetExternalStoragePublicDirectory( Android.OS.Environment.DirectoryDownloads )!.Path, fileName + ".txt" );
+                string filesName = System.IO.Path.Combine( Android.OS.Environment.GetExternalStoragePublicDirectory( Android.OS.Environment.DirectoryDownloads ).Path, fileName + ".txt" );
                 string json = JsonConvert.SerializeObject( segments, Newtonsoft.Json.Formatting.None );
                 File.WriteAllText( filesName, json );
                 AlertDialog.Builder builder = new AlertDialog.Builder( this );
                 builder.SetTitle( GetString( Resource.String.string_savepopup_title ) );
                 builder.SetMessage( GetString( Resource.String.string_savepopup_message ) + filesName );
                 builder.SetPositiveButton( GetString( Resource.String.OK ), ( senderAlert, args ) => { } );
-                AlertDialog dialog = builder.Create()!;
-                dialog!.Show();
-                saveButton!.Enabled = false;
-                saveButton.Background!.SetTint( Constants.disabledButton );
+                AlertDialog dialog = builder.Create();
+                dialog.Show();
+                saveButton.Enabled = false;
+                saveButton.Background.SetTint( Constants.disabledButton );
                 saveButton.SetTextColor( Constants.disabledText );
                 saveButton.Text = GetString( Resource.String.string_gamesaved );
                 gamenameText.Enabled = false;
@@ -312,8 +312,8 @@ namespace Football_TimeTracker_Android
             builder.SetPositiveButton( GetString( Resource.String.string_resetpopup_positive ), ( senderAlert, args ) => { ResetAll(); } );
             builder.SetNeutralButton( GetString( Resource.String.string_resetpopup_negative ), ( senderAlert, args ) => { } );
 
-            AlertDialog dialog = builder.Create()!;
-            dialog!.Show();
+            AlertDialog dialog = builder.Create();
+            dialog.Show();
         }
 
         private void TimerSecondPassed( Object? myObject,
@@ -333,14 +333,14 @@ namespace Football_TimeTracker_Android
                 if (seconds >= Constants.minute45) //45 mins
                 {
                     formattedMinutes -= 45;
-                    mainText!.Text = "45:00\n+ " + formattedMinutes.ToString( "D2" ) + ":" + formattedSeconds.ToString( "D2" );
+                    mainText.Text = "45:00\n+ " + formattedMinutes.ToString( "D2" ) + ":" + formattedSeconds.ToString( "D2" );
                 }
                 else
                 {
-                    mainText!.Text = formattedMinutes.ToString( "D2" ) + ":" + formattedSeconds.ToString( "D2" );
+                    mainText.Text = formattedMinutes.ToString( "D2" ) + ":" + formattedSeconds.ToString( "D2" );
                 }
 
-                segments!.LastOrDefault()!.addSeconds();
+                segments.LastOrDefault().addSeconds();
 
                 UpdateTotals();
             }
@@ -350,26 +350,26 @@ namespace Football_TimeTracker_Android
         {
             if (GarbageCollected())
             {
-                if (currentSegmentType == segments!.Last().segmentType)
+                if (currentSegmentType == segments.Last().segmentType)
                 {
                     return;
                 }
             }
 
             Segment segment = new Segment( seconds, currentSegmentType, half );
-            segments!.Add( segment );
+            segments.Add( segment );
 
             CheckUndoButton();
         }
 
         private bool GarbageCollected()
         {
-            if (segments!.Where( x => x.half == half).Count() > 1)
+            if (segments.Where( x => x.half == half).Count() > 1)
             {
-                Segment lastSegment = segments!.Last();
+                Segment lastSegment = segments.Last();
                 if (lastSegment.elapsedSeconds == 0)
                 {
-                    segments!.Remove( lastSegment );
+                    segments.Remove( lastSegment );
 
                     return true;
                 }
@@ -379,45 +379,45 @@ namespace Football_TimeTracker_Android
 
         private void ReplaceLastSegment( int segmentType )
         {
-            segments!.Last().segmentType = segmentType;
+            segments.Last().segmentType = segmentType;
             currentSegmentType = segmentType;
             switch (currentSegmentType)
             {
                 case Constants.segmentTypeActive:
-                    mainText!.SetBackgroundColor( Constants.colorSegmentActive );
+                    mainText.SetBackgroundColor( Constants.colorSegmentActive );
                     break;
                 case Constants.segmentTypeOutofBounds:
-                    mainText!.SetBackgroundColor( Constants.colorSegmentOutofBounds );
+                    mainText.SetBackgroundColor( Constants.colorSegmentOutofBounds );
                     break;
                 case Constants.segmentTypeRefBlow:
-                    mainText!.SetBackgroundColor( Constants.colorSegmentRefBlow );
+                    mainText.SetBackgroundColor( Constants.colorSegmentRefBlow );
                     break;
                 case Constants.segmentTypeGoal:
-                    mainText!.SetBackgroundColor( Constants.colorSegmentGoal );
+                    mainText.SetBackgroundColor( Constants.colorSegmentGoal );
                     break;
             }
         }
 
         private void RemoveSegment()
         {
-            Segment lastsegment = segments!.Last();
-            segments!.Remove( lastsegment );
+            Segment lastsegment = segments.Last();
+            segments.Remove( lastsegment );
             Segment prelastsegment = segments.Last();
             prelastsegment.elapsedSeconds += lastsegment.elapsedSeconds;
             currentSegmentType = prelastsegment.segmentType;
             switch (currentSegmentType)
             {
                 case Constants.segmentTypeActive:
-                    mainText!.SetBackgroundColor( Constants.colorSegmentActive );
+                    mainText.SetBackgroundColor( Constants.colorSegmentActive );
                     break;
                 case Constants.segmentTypeOutofBounds:
-                    mainText!.SetBackgroundColor( Constants.colorSegmentOutofBounds );
+                    mainText.SetBackgroundColor( Constants.colorSegmentOutofBounds );
                     break;
                 case Constants.segmentTypeRefBlow:
-                    mainText!.SetBackgroundColor( Constants.colorSegmentRefBlow );
+                    mainText.SetBackgroundColor( Constants.colorSegmentRefBlow );
                     break;
                 case Constants.segmentTypeGoal:
-                    mainText!.SetBackgroundColor( Constants.colorSegmentGoal );
+                    mainText.SetBackgroundColor( Constants.colorSegmentGoal );
                     break;
             }
             CheckUndoButton();
@@ -425,27 +425,27 @@ namespace Football_TimeTracker_Android
 
         private void ResetHalf()
         {
-            Segment lastsegment = segments!.Last();
-            segments!.Remove( lastsegment );
+            Segment lastsegment = segments.Last();
+            segments.Remove( lastsegment );
             UpdateTotals();
             CheckUndoButton();
             seconds = 0;
-            timerPrincipal!.Stop();
-            mainText!.Text = GetString( Resource.String.string_timer0 );
+            timerPrincipal.Stop();
+            mainText.Text = GetString( Resource.String.string_timer0 );
             mainText.SetBackgroundColor( Constants.colorBackgroundGray );
             ticking = false;
-            Window!.ClearFlags( WindowManagerFlags.KeepScreenOn );
+            Window.ClearFlags( WindowManagerFlags.KeepScreenOn );
             if (half == 0)
             {
-                gamestatusText!.Text = GetString( Resource.String.string_status_poriniciar ); ;
+                gamestatusText.Text = GetString( Resource.String.string_status_poriniciar ); ;
                 gamestatusText.SetBackgroundColor( Constants.colorBackgroundGray );
-                startButton!.Text = GetString( Resource.String.string_startfirsthalf ); ;
+                startButton.Text = GetString( Resource.String.string_startfirsthalf ); ;
             }
             else
             {
-                gamestatusText!.SetBackgroundColor( Color.Khaki );
+                gamestatusText.SetBackgroundColor( Color.Khaki );
                 gamestatusText.Text = GetString( Resource.String.string_status_halftime );
-                startButton!.Text = GetString( Resource.String.string_startsecondhalf );
+                startButton.Text = GetString( Resource.String.string_startsecondhalf );
             }
         }
 
@@ -453,21 +453,21 @@ namespace Football_TimeTracker_Android
         {
             if(!ticking)
             {
-                undoButton!.Enabled = false;
-                undoButton.Background!.SetTint( Constants.disabledButton );
+                undoButton.Enabled = false;
+                undoButton.Background.SetTint( Constants.disabledButton );
                 undoButton.SetTextColor( Constants.disabledText );
             }
 
-            if (segments!.Where( x => x.half == half ).ToList().Count >= 1)
+            if (segments.Where( x => x.half == half ).ToList().Count >= 1)
             {
-                undoButton!.Enabled = true;
-                undoButton.Background!.SetTint( Constants.enabledButton );
+                undoButton.Enabled = true;
+                undoButton.Background.SetTint( Constants.enabledButton );
                 undoButton.SetTextColor( Color.Black );
             }
             else
             {
-                undoButton!.Enabled = false;
-                undoButton.Background!.SetTint( Constants.disabledButton );
+                undoButton.Enabled = false;
+                undoButton.Background.SetTint( Constants.disabledButton );
                 undoButton.SetTextColor( Constants.disabledText );
             }
         }
@@ -477,16 +477,16 @@ namespace Football_TimeTracker_Android
             switch (currentSegmentType)
             {
                 case Constants.segmentTypeActive:
-                    mainText!.SetBackgroundColor( Constants.colorSegmentActive );
+                    mainText.SetBackgroundColor( Constants.colorSegmentActive );
                     break;
                 case Constants.segmentTypeOutofBounds:
-                    mainText!.SetBackgroundColor( Constants.colorSegmentOutofBounds );
+                    mainText.SetBackgroundColor( Constants.colorSegmentOutofBounds );
                     break;
                 case Constants.segmentTypeRefBlow:
-                    mainText!.SetBackgroundColor( Constants.colorSegmentRefBlow );
+                    mainText.SetBackgroundColor( Constants.colorSegmentRefBlow );
                     break;
                 case Constants.segmentTypeGoal:
-                    mainText!.SetBackgroundColor( Constants.colorSegmentGoal );
+                    mainText.SetBackgroundColor( Constants.colorSegmentGoal );
                     break;
             }
         }
@@ -501,7 +501,7 @@ namespace Football_TimeTracker_Android
             bool result = false;
             try
             {
-                float diffY = e2.GetY() - e1!.GetY();
+                float diffY = e2.GetY() - e1.GetY();
                 float diffX = e2.GetX() - e1.GetX();
                 if (Math.Abs( diffX ) > Math.Abs( diffY ))
                 {
@@ -567,7 +567,7 @@ namespace Football_TimeTracker_Android
 
         public bool OnTouch( View? v, MotionEvent? e )
         {
-            if (v!.GetType() == typeof( Button ))
+            if (v.GetType() == typeof( Button ))
             {
                 buttonTouch = (Button)v;
             }
@@ -576,7 +576,7 @@ namespace Football_TimeTracker_Android
                 buttonTouch = null;
             }
 
-            return gestureDetector!.OnTouchEvent( e! );
+            return gestureDetector.OnTouchEvent( e );
         }
     }
 
