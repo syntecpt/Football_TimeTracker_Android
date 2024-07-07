@@ -74,6 +74,9 @@ namespace Football_TimeTracker_Android
             undoButton.SetOnTouchListener( this );
             mainText.SetOnTouchListener( this );
             gamestatusText.SetOnTouchListener( this );
+            startButton.SetOnTouchListener( this );
+            saveButton.SetOnTouchListener( this );
+            resetButton.SetOnTouchListener( this );
         }
 
         private void ResetAll()
@@ -235,7 +238,7 @@ namespace Football_TimeTracker_Android
                 gamestatusText.SetBackgroundColor( Color.Khaki );
                 gamestatusText.Text = GetString( Resource.String.string_status_halftime );
                 ticking = false;
-                Window.ClearFlags( WindowManagerFlags.KeepScreenOn );
+                //Window.ClearFlags( WindowManagerFlags.KeepScreenOn );
                 startButton.Text = GetString( Resource.String.string_startsecondhalf );
                 CheckUndoButton();
             }
@@ -246,7 +249,7 @@ namespace Football_TimeTracker_Android
                 mainText.SetBackgroundColor( Constants.colorSegmentActive );
                 mainText.Text = GetString( Resource.String.string_timer0 );
                 ticking = true;
-                Window.AddFlags( WindowManagerFlags.KeepScreenOn );
+                //Window.AddFlags( WindowManagerFlags.KeepScreenOn );
                 currentSegmentType = Constants.segmentTypeActive;
                 gamestatusText.SetBackgroundColor( Color.Lime );
                 gamestatusText.Text = GetString( Resource.String.string_status_secondhalfrunning );
@@ -434,7 +437,7 @@ namespace Football_TimeTracker_Android
             mainText.Text = GetString( Resource.String.string_timer0 );
             mainText.SetBackgroundColor( Constants.colorBackgroundGray );
             ticking = false;
-            Window.ClearFlags( WindowManagerFlags.KeepScreenOn );
+            //Window.ClearFlags( WindowManagerFlags.KeepScreenOn );
             if (half == 0)
             {
                 gamestatusText.Text = GetString( Resource.String.string_status_poriniciar ); ;
